@@ -4,7 +4,7 @@ import numpy as np
 try:
     import cupy as _cp
     _cp.zeros((1,))
-    _cp.cuda.runtime.getDeviceCount()  
+    _cp.cuda.runtime.getDeviceCount() 
     cp = _cp
 except Exception:
     cp = np
@@ -24,5 +24,3 @@ __all__ = [
     "load_conllu", "build_vocab",
     "one_hot_vector", "sentence_to_onehot", "tags_to_onehot", "build_windowed_dataset"
 ]
-
-
