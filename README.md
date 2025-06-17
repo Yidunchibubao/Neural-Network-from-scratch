@@ -15,7 +15,7 @@ This project consists of a complete implementation of a deep neural network. If 
   - `tags_to_onehot`  
   - `build_windowed_dataset`
 
-- ⚙️ **Dual Backend**:  
+- **Dual Backend**:  
   - **CPU**: uses NumPy (`numpy`)  
   - **GPU**: uses CuPy (`cupy`) when available (optional install)
 
@@ -29,7 +29,7 @@ Requires Python ≥ 3.7.
 
 ```bash
 pip install nnscratch
-or, if installing from GitHub:
+or, #if installing from GitHub:
 
 bash
 Copy
