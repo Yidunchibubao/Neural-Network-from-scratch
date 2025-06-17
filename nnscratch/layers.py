@@ -7,7 +7,7 @@ Original file is located at
     https://colab.research.google.com/drive/1YCkR6ai4Im6rI7Pk7s-x6O_nR4e-3lnt
 """
 
-from . import cp, np
+from . import np
 
 
 class LinearLayer:
@@ -17,8 +17,8 @@ class LinearLayer:
         """
         self.input_size  = input_size
         self.output_size = output_size
-        self.W = cp.random.randn(output_size, input_size) * 0.01  # W^(k)
-        self.b = cp.zeros((output_size, 1))                       # b^(k)#   - initialized to zeros so that the network does not favor any direction initially.
+        self.W = np.random.randn(output_size, input_size) * 0.01  # W^(k)
+        self.b = np.zeros((output_size, 1))                       # b^(k)#   - initialized to zeros so that the network does not favor any direction initially.
         self.h_prev = None                                        # stores h^(k-1)
 
     def forward(self, h_prev):
@@ -40,7 +40,7 @@ class LinearLayer:
         # ∇_{W^(k)} = grad_a @ h_prev.T
         grad_W = grad_a @ self.h_prev.T
         # ∇_{b^(k)} = sum over batch
-        grad_b = cp.sum(grad_a, axis=1, keepdims=True)
+        grad_b = np.sum(grad_a, axis=1, keepdims=True)
         # ∇_{h^(k-1)} = W^(k).T @ grad_a
         grad_h_prev = self.W.T @ grad_a
 
@@ -90,18 +90,18 @@ class ActivationFunction:
         return self.grad(grad_h, self.a)
 
     # --- nonlinearities ---
-    def _relu(self,    x): return cp.maximum(0, x)
-    def _sigmoid(self, x): return 1 / (1 + cp.exp(-x))
-    def _tanh(self,    x): return cp.tanh(x)
+    def _relu(self,    x): return np.maximum(0, x)
+    def _sigmoid(self, x): return 1 / (1 + np.exp(-x))
+    def _tanh(self,    x): return np.tanh(x)
     def _softmax(self, x):
-        ex = cp.exp(x - cp.max(x, axis=0, keepdims=True))
-        return ex / cp.sum(ex, axis=0, keepdims=True)
+        ex = np.exp(x - np.max(x, axis=0, keepdims=True))
+        return ex / np.sum(ex, axis=0, keepdims=True)
 
     # --- derivatives ---
     def _grad_relu(self,    dh, a): return dh * (a > 0)
     def _grad_sigmoid(self, dh, a):
-        s = 1 / (1 + cp.exp(-a))
+        s = 1 / (1 + np.exp(-a))
         return dh * s * (1 - s)
     def _grad_tanh(self,    dh, a):
-        t = cp.tanh(a)
+        t = np.tanh(a)
         return dh * (1 - t**2)
