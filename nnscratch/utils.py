@@ -11,26 +11,6 @@ Original file is located at
 import numpy as np
 from . import cp
 
-import conllu
-
-
-def load_conllu(filename):
-  sentences = []
-  tags = []
-  with open(filename, "rt", encoding="utf-8") as f:
-    for sentence in conllu.parse(f.read()):
-      words = []
-      upos_tags = []
-      for token in sentence:
-        if isinstance(token["id"], int):
-          if token["upos"] not in {"PUNCT", "NUM", "SYM", "X"}:
-            words.append(token["form"].lower())
-            upos_tags.append(token["upos"])
-      if words:  # skip empty sentences
-        sentences.append(words)
-        tags.append(upos_tags)
-  return sentences, tags
-
 def build_vocab(sentences, tags):
   word_set = set()
   tag_set = set()
