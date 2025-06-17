@@ -7,7 +7,7 @@ Original file is located at
     https://colab.research.google.com/drive/1PHw-dKpfgTBqwFFFbgQaktF_qOUT9yfl
 """
 
-from . import cp, np
+from . import cp
 
 
 class EmbeddingLayer:
