@@ -1,12 +1,15 @@
 # nnscratch/__init__.py
 
+# -*- coding: utf-8 -*-
+"""nnscratch/__init__.py"""
+
 import numpy as np
 
 def _get_array_module():
     try:
         import cupy
         try:
-            if cupy.cuda.is_available():
+            if cupy.cuda.is_available(): 
                 return cupy
         except Exception:
             pass
@@ -27,9 +30,10 @@ from .utils       import (
     build_windowed_dataset,
 )
 
-
 __all__ = [
     "cp", "np",
-    "LinearLayer", "ActivationFunction", "EmbeddingLayer", "NeuralNetwork", "build_vocab",
+    "LinearLayer", "ActivationFunction", "EmbeddingLayer", "NeuralNetwork",
+    "build_vocab",
     "one_hot_vector", "sentence_to_onehot", "tags_to_onehot", "build_windowed_dataset",
 ]
+
