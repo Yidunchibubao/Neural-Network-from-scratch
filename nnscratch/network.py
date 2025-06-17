@@ -8,7 +8,7 @@ Original file is located at
 """
 
 from .layers import LinearLayer, ActivationFunction
-from . import cp, np
+from . import np
 
 
 class NeuralNetwork:
@@ -41,7 +41,7 @@ class NeuralNetwork:
         y_true: one-hot labels,         shape = (C, batch)
         """
         eps = 1e-9 # small constant for numerical stability
-        return -cp.sum(y_true * cp.log(y_pred + eps)) / y_true.shape[1] # Compute -sum(y_true * log(y_pred + eps)) / batch_size
+        return -np.sum(y_true * np.log(y_pred + eps)) / y_true.shape[1] # Compute -sum(y_true * log(y_pred + eps)) / batch_size
 
     def compute_loss_derivative(self, y_pred, y_true):
         """
