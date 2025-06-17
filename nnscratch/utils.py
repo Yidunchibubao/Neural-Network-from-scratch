@@ -7,8 +7,8 @@ Original file is located at
     https://colab.research.google.com/drive/1wndeoYc03iChnFhw-xgNr5psU3nt0_sg
 """
 
-import cupy as cp
-import numpy as np
+from . import cp, np
+
 
 def load_conllu(filename):
   sentences = []
