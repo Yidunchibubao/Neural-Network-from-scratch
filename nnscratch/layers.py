@@ -7,8 +7,8 @@ Original file is located at
     https://colab.research.google.com/drive/1YCkR6ai4Im6rI7Pk7s-x6O_nR4e-3lnt
 """
 
-import cupy as cp
-import numpy as np
+from . import cp, np
+
 
 class LinearLayer:
     def __init__(self, input_size, output_size):
