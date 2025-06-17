@@ -8,8 +8,7 @@ Original file is located at
 """
 
 
-import numpy as np
-from . import cp
+from . import cp, np
 
 def build_vocab(sentences, tags):
   word_set = set()
