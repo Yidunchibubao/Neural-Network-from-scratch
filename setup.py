@@ -5,7 +5,7 @@ setup(
     name="nnscratch",
     version="0.1.0",
     description="Neural nets from scratch toolkit for NLP tasks",
-    author="Yidunchibubao",
+    author="Lyu CHEN, Shuyue GU, Varvara SMIRNOVA",
     packages=find_packages(),
     python_requires=">=3.7",
     install_requires=[
