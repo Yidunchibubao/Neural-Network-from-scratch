@@ -7,8 +7,7 @@ Original file is located at
     https://colab.research.google.com/drive/1PHw-dKpfgTBqwFFFbgQaktF_qOUT9yfl
 """
 
-import cupy as cp
-import numpy as np
+from . import cp, np
 
 class EmbeddingLayer:
     def __init__(self, E: cp.ndarray, lr: float=0.01, trainable: bool=True):
