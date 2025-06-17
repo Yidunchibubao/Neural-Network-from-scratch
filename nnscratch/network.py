@@ -8,7 +8,7 @@ Original file is located at
 """
 
 from .layers import LinearLayer, ActivationFunction
-from . import cp, np
+from . import cp
 
 
 class NeuralNetwork:
