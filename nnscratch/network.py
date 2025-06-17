@@ -8,8 +8,8 @@ Original file is located at
 """
 
 from .layers import LinearLayer, ActivationFunction
-import cupy as cp
-import numpy as np
+from . import cp, np
+
 
 class NeuralNetwork:
     def __init__(self, layers_config, learning_rate=0.01):
