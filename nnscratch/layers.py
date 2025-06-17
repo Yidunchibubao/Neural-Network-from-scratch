@@ -7,7 +7,7 @@ Original file is located at
     https://colab.research.google.com/drive/1YCkR6ai4Im6rI7Pk7s-x6O_nR4e-3lnt
 """
 
-from . import cp, np
+from . import cp
 
 
 class LinearLayer:
