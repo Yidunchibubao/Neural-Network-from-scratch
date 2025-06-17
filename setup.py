@@ -1,26 +1,35 @@
-# nnscratch/__init__.py
-import numpy as np
+# setup.py
+from setuptools import setup, find_packages
+import io
+import os
 
-try:
-    import cupy as _cp
-    _cp.zeros((1,))
-    _cp.cuda.runtime.getDeviceCount() 
-    cp = _cp
-except Exception:
-    cp = np
+here = os.path.abspath(os.path.dirname(__file__))
+with io.open(os.path.join(here, "README.md"), encoding="utf-8") as f:
+    long_description = f.read()
 
-from .layers import LinearLayer, ActivationFunction
-from .embeddings import EmbeddingLayer
-from .network import NeuralNetwork
-from .utils import (
-    load_conllu, build_vocab,
-    one_hot_vector, sentence_to_onehot,
-    tags_to_onehot, build_windowed_dataset,
+setup(
+    name="nnscratch",                                 
+    version="0.1.0",                                  
+    author="Lyu CHEN, Shuyue GU, Varvara SMIRNOVA",  
+    description="Neural network from scratch toolkit for NLP tasks",
+    long_description=long_description,
+    long_description_content_type="text/markdown",
+    url="https://github.com/Yidunchibubao/Neural-Network-from-scratch",
+    packages=find_packages(),                        
+    include_package_data=True,                     
+    python_requires=">=3.7",
+    install_requires=[
+        "numpy>=1.18",
+    ],
+    extras_require={
+        "gpu": [
+            "cupy-cuda11x>=11.0.0",  
+        ],
+    },
+    classifiers=[
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: MIT License", 
+        "Operating System :: OS Independent",
+        "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    ],
 )
-
-__all__ = [
-    "cp", "np",
-    "LinearLayer", "ActivationFunction", "EmbeddingLayer", "NeuralNetwork",
-    "load_conllu", "build_vocab",
-    "one_hot_vector", "sentence_to_onehot", "tags_to_onehot", "build_windowed_dataset"
-]
