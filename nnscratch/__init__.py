@@ -21,7 +21,6 @@ from .utils       import (
 
 __all__ = [
     "cp", "np",
-    "LinearLayer", "ActivationFunction", "EmbeddingLayer", "NeuralNetwork",
-    "load_conllu", "build_vocab",
+    "LinearLayer", "ActivationFunction", "EmbeddingLayer", "NeuralNetwork", "build_vocab",
     "one_hot_vector", "sentence_to_onehot", "tags_to_onehot", "build_windowed_dataset",
 ]
