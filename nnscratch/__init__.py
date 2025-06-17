@@ -2,14 +2,19 @@
 
 import numpy as np
 
-try:
-    import cupy
-    if cupy.cuda.is_available():
-        cp = cupy
-    else:
-        cp = np
-except ImportError:
-    cp = np
+def _get_array_module():
+    try:
+        import cupy
+        try:
+            if cupy.cuda.is_available():
+                return cupy
+        except Exception:
+            pass
+    except Exception:
+        pass
+    return np
+
+cp = _get_array_module()
 
 from .layers      import LinearLayer, ActivationFunction
 from .embeddings  import EmbeddingLayer
