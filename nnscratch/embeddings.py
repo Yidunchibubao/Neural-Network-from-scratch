@@ -7,10 +7,10 @@ Original file is located at
     https://colab.research.google.com/drive/1PHw-dKpfgTBqwFFFbgQaktF_qOUT9yfl
 """
 
-from . import cp, np
+from . import np
 
 class EmbeddingLayer:
-    def __init__(self, E: cp.ndarray, lr: float=0.01, trainable: bool=True):
+    def __init__(self, E: np.ndarray, lr: float=0.01, trainable: bool=True):
         """
         E: pretrained embedding matrix of shape (D, V)
         lr: learning rate for fine-tuning
@@ -21,7 +21,7 @@ class EmbeddingLayer:
         self.trainable = trainable
         self.last_x = None  # Cache of the most recent one-hot matrix (V × n) so we know which column of E to update during backprop.
 
-    def forward(self, x_onehot: cp.ndarray) -> cp.ndarray:
+    def forward(self, x_onehot: np.ndarray) -> np.ndarray:
         """
         x_onehot: concatenated one-hot vector, shape = (V * n, 1)
         returns: stacked embedding vector, shape = (D * n, 1)
@@ -41,12 +41,12 @@ class EmbeddingLayer:
         emb = self.E @ Xmat             # (D, n)
         return emb.reshape(D * n, 1)    # (D*n, 1)
 
-    def backward(self, grad_emb: cp.ndarray):
+    def backward(self, grad_emb: np.ndarray):
         """
         Backward pass: fine-tune embedding matrix columns based on upstream gradient.
 
         Args:
-          grad_emb (cp.ndarray): Gradient w.r.t. the forward output,
+          grad_emb (np.ndarray): Gradient w.r.t. the forward output,
                                  shape = (D * n, 1).
 
         """
@@ -64,7 +64,7 @@ class EmbeddingLayer:
             # Extract the one-hot column for token j (shape V,)
             onehot_col = self.last_x[:, j]
             # Find the index of the active (1) entry → actual token ID
-            idx = int(cp.argmax(onehot_col))
+            idx = int(np.argmax(onehot_col))
             # Extract gradient slice corresponding to that token (shape D×1)
             grad_col = G[:, j:j+1]
             # Update only that column of E: gradient descent step
