@@ -12,7 +12,7 @@ setup(
         "numpy>=1.20",
     ],
     extras_require={
-        "gpu": ["cupy"],  
+        "gpu": ["cupy"],
     },
     classifiers=[
         "Programming Language :: Python :: 3",
