@@ -7,7 +7,7 @@ Original file is located at
     https://colab.research.google.com/drive/1wndeoYc03iChnFhw-xgNr5psU3nt0_sg
 """
 
-from . import cp, np
+from . import np
 
 
 def load_conllu(filename):
@@ -45,7 +45,7 @@ def build_vocab(sentences, tags):
 # build a one-hot vector for a word, the position of the word id is 1, other positions are 0
 # the dimension of one-hot vector is the size of vocabulary
 def one_hot_vector(index, size):
-  vec = cp.zeros((size, 1))
+  vec = np.zeros((size, 1))
   if 0 <= index < size:
     vec[index, 0] = 1
   return vec
@@ -105,7 +105,7 @@ def build_windowed_dataset(sentences, tags, word2id, tag2id, window_size=1):
       onehot_window = [
         one_hot_vector(word2id.get(w, unk_id), vocab_size) for w in window
       ]
-      x = cp.vstack(onehot_window)  # shape: (vocab_size * (2*window_size + 1), 1)
+      x = np.vstack(onehot_window)  # shape: (vocab_size * (2*window_size + 1), 1)
 
       # build one-hot vector for corresponding POS tag
       y = one_hot_vector(tag2id.get(tag, tag2id["<PAD>"]), num_tags)
